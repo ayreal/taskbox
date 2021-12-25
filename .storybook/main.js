@@ -10,6 +10,9 @@ module.exports = {
     '@storybook/preset-create-react-app',
     '@storybook/addon-a11y',
   ],
+  refs: {
+    '@chakra-ui/react': { disable: true },
+  },
   webpackFinal: async (config) => {
     return {
       ...config,
