@@ -15,8 +15,7 @@ const FrownIcon = (props) => (
     strokeWidth={2}
     strokeLinecap="round"
     strokeLinejoin="round"
-    {...props}
-  >
+    {...props}>
     <circle cx="12" cy="12" r="10"></circle>
     <path d="M16 16s-1.5-2-4-2-4 2-4 2M9 9h.01M15 9h.01" />
   </Icon>
@@ -27,6 +26,10 @@ export const InboxScreen = ({ error }) => {
 
   const archiveTask = (archive, id) => {
     dispatch({ type: archive ? 'ARCHIVE_TASK' : 'INBOX_TASK', id });
+  };
+
+  const deleteTask = (id) => {
+    dispatch({ type: 'DELETE_TASK', id });
   };
 
   const togglePinTask = (state, id) => {
@@ -56,8 +59,7 @@ export const InboxScreen = ({ error }) => {
           fontSize="lg"
           lineHeight="8"
           color="brand.500"
-          textAlign={['center', 'center', 'left']}
-        >
+          textAlign={['center', 'center', 'left']}>
           Taskbox
         </Heading>
       </Box>
@@ -66,6 +68,7 @@ export const InboxScreen = ({ error }) => {
         onArchiveTask={archiveTask}
         onTogglePinTask={togglePinTask}
         onEditTitle={editTitle}
+        onDeleteTask={deleteTask}
       />
     </Box>
   );

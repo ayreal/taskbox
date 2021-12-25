@@ -15,8 +15,7 @@ const LoadingTask = () => (
     alignItems="center"
     h={12}
     p={4}
-    aria-busy="true"
-  >
+    aria-busy="true">
     <Skeleton height={4} width={4} mr={4} />
     <Skeleton height={4} width={40} mr={2} />
     <Skeleton height={4} width={6} mr={2} />
@@ -32,11 +31,13 @@ export function TaskList({
   onTogglePinTask,
   onArchiveTask,
   onEditTitle,
+  onDeleteTask,
 }) {
   const events = {
     onTogglePinTask,
     onArchiveTask,
     onEditTitle,
+    onDeleteTask,
   };
 
   if (loading) {
@@ -80,6 +81,7 @@ TaskList.propTypes = {
   onTogglePinTask: PropTypes.func.isRequired,
   onArchiveTask: PropTypes.func.isRequired,
   onEditTitle: PropTypes.func.isRequired,
+  onDeleteTask: PropTypes.func.isRequired,
 };
 
 TaskList.defaultProps = {
