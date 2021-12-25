@@ -7,9 +7,13 @@ import {
   within,
   fireEvent,
 } from '@testing-library/react';
+import { axe, toHaveNoViolations } from 'jest-axe';
 import { composeStories } from '@storybook/testing-react';
 import { getWorker } from 'msw-storybook-addon';
 import * as stories from './InboxScreen.stories';
+
+// You can use expect.extend to add your own matchers to Jest.
+expect.extend(toHaveNoViolations);
 
 describe('InboxScreen', () => {
   afterEach(() => {
@@ -21,6 +25,18 @@ describe('InboxScreen', () => {
   afterAll(() => getWorker().close());
 
   const { Default } = composeStories(stories);
+
+  // Run axe
+  it('Should have no accessibility violations', async () => {
+    const { container, queryByText } = render(<Default />);
+
+    await waitFor(() => {
+      expect(queryByText('You have no tasks')).not.toBeInTheDocument();
+    });
+
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
 
   it('should pin a task', async () => {
     const { queryByText, getByRole } = render(<Default />);
