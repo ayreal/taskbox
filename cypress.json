@@ -1,0 +1,8 @@
+{
+    "baseUrl": "http://localhost:3000",
+    "e2e": {
+        "defaultCommandTimeout": 10000,
+        "slowTestThreshold": 5000
+    },
+    "integrationFolder":"cypress/e2e"
+}
